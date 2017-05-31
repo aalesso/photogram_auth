@@ -41,6 +41,7 @@ group :development do
   gem "listen"
   gem "wdm" if Gem.win_platform?
   gem "pry-rails"
+  gem 'bcrypt', platforms: :ruby
 end
 
 gem 'rspec-rails', group: [:test, :development]

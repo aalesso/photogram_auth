@@ -1,69 +1,69 @@
-class PhotosController < ApplicationController
+class CommentsController < ApplicationController
   def index
-    @photos = Photo.all
+    @comments = Comment.all
 
-    render("photos/index.html.erb")
+    render("comments/index.html.erb")
   end
 
   def show
-    @photo = Photo.find(params[:id])
+    @comment = Comment.find(params[:id])
 
-    render("photos/show.html.erb")
+    render("comments/show.html.erb")
   end
 
   def new
-    @photo = Photo.new
+    @comment = Comment.new
 
-    render("photos/new.html.erb")
+    render("comments/new.html.erb")
   end
 
   def create
-    @photo = Photo.new
+    @comment = Comment.new
 
-    @photo.caption = params[:caption]
-    @photo.image = params[:image]
-    @photo.user_id = params[:user_id]
+    @comment.photo_id = params[:photo_id]
+    @comment.body = params[:body]
+    @comment.user_id = params[:user_id]
 
-    save_status = @photo.save
+    save_status = @comment.save
 
     if save_status == true
-      redirect_to("/photos/#{@photo.id}", :notice => "Photo created successfully.")
+      redirect_to("/photos", :notice => "Comment created successfully.")
     else
-      render("photos/new.html.erb")
+      render("comments/new.html.erb")
     end
   end
 
   def edit
-    @photo = Photo.find(params[:id])
+    @comment = Comment.find(params[:id])
 
-    render("photos/edit.html.erb")
+    render("comments/edit.html.erb")
   end
 
   def update
-    @photo = Photo.find(params[:id])
+    @comment = Comment.find(params[:id])
 
-    @photo.caption = params[:caption]
-    @photo.image = params[:image]
-    @photo.user_id = params[:user_id]
+    @comment.photo_id = params[:photo_id]
+    @comment.body = params[:body]
+    @comment.user_id = params[:user_id]
 
-    save_status = @photo.save
+    save_status = @comment.save
 
     if save_status == true
-      redirect_to("/photos/#{@photo.id}", :notice => "Photo updated successfully.")
+      redirect_to("/comments/#{@comment.id}", :notice => "Comment updated successfully.")
     else
-      render("photos/edit.html.erb")
+      render("comments/edit.html.erb")
     end
   end
 
   def destroy
-    @photo = Photo.find(params[:id])
+    @comment = Comment.find(params[:id])
 
-    @photo.destroy
+    @comment.destroy
 
-    if URI(request.referer).path == "/photos/#{@photo.id}"
-      redirect_to("/", :notice => "Photo deleted.")
+    if URI(request.referer).path == "/comments/#{@comment.id}"
+      redirect_to("/", :notice => "Comment deleted.")
     else
-      redirect_to(:back, :notice => "Photo deleted.")
+      redirect_to(:back, :notice => "Comment deleted.")
     end
   end
 end

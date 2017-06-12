@@ -1,3 +1,16 @@
+body {
+
+  background: url("Beer.jpg")
+  no-repeat center bottom;
+  /*min-height: 500px;*/
+  background-attachment: fixed;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 470px;
+  border-radius: 50px;
+}
+
 .pt-0 {
   padding-top: 0;
 }
